@@ -1,0 +1,29 @@
+plugins {
+    id "java"
+    id "idea"
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation('io.appium:java-client:9.3.0')
+    testImplementation('org.assertj:assertj-core:3.25.3')
+    testImplementation('org.testng:testng:7.10.1')
+}
+
+test {
+    useTestNG()
+}

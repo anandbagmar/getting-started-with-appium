@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@appium/doctor": "2.1.10",
+    "@appium/relaxed-caps-plugin": "1.0.6",
+    "appium": "2.11.3",
+    "appium-uiautomator2-driver": "3.7.9",
+    "appium-xcuitest-driver": "7.26.2"
+  },
+  "name": "getting-started-with-appium",
+  "description": "",
+  "version": "0.0.1",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "appium",
+    "appium2.0",
+    "appium-doctor",
+    "appium-device-farm",
+    "teswiz"
+  ],
+  "author": "Anand Bagmar",
+  "license": "MIT"
+}

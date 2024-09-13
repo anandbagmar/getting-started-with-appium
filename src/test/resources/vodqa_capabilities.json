@@ -1,0 +1,10 @@
+{
+  "appium:app": "/Users/anand.bagmar/projects/znsio/teswiz/temp/sampleApps/VodQA.apk",
+  "appium:automationName": "uiautomator2",
+  "appium:autoGrantPermissions": true,
+  "platformName": "Android",
+  "appium:platformVersion": "14",
+  "appium:noSign": true,
+  "appium:appiumVersion": "2.0.0",
+  "appium:fullReset": true
+}

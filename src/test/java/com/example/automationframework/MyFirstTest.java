@@ -1,10 +1,13 @@
 package com.example.automationframework;
 
+import com.example.Wait;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -15,6 +18,11 @@ import java.net.URL;
 import java.time.Duration;
 
 public class MyFirstTest {
+    private final By byLoginLocator = AppiumBy.androidUIAutomator("new UiSelector().text(\"LOG IN\")");
+    private final By byDoubleTapLocator = AppiumBy.androidUIAutomator("new UiSelector().text(\"Double Tap\")");
+    private final By byDoubleTapMeLocator = AppiumBy.androidUIAutomator("new UiSelector().text(\"Double Tap Me\")");
+    private final By byGoBackLocator = AppiumBy.androidUIAutomator("new UiSelector().text(\"Back\")");
+
     private WebDriver driver;
     private static String APPIUM_SERVER_URL = "http://localhost:4723/wd/hub/";
     private static AppiumDriverLocalService localAppiumServer;
@@ -72,16 +80,21 @@ public class MyFirstTest {
 
     @Test
     public void myTest() {
-        waitFor(5);
-    }
-
-    private void waitFor(int durationInSeconds) {
-        try {
-            System.out.println("Wait for " + durationInSeconds + " seconds");
-            Thread.sleep(durationInSeconds * 1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        //      Recorded snippet by Appium Inspector
+        //        var el1 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"LOG IN\")"));
+        //        el1.click();
+        //        var packageName = driver.executeScript("mobile: getCurrentPackage");
+        //        var caps = driver.getSessionDetails();
+        //        var el2 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Double Tap\")"));
+        //        el2.click();
+        //        var el3 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Double Tap Me\")"));
+        //        el3.click();
+        //        var el4 = driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"Back\")"));
+        //        el4.click();
+        Wait.waitTillElementIsPresent(driver, byLoginLocator, 3).click();
+        driver.findElement(byDoubleTapLocator).click();
+        driver.findElement(byDoubleTapMeLocator).click();
+        driver.findElement(byGoBackLocator).click();
     }
 
     private static void startAppiumServer() {
@@ -94,9 +107,7 @@ public class MyFirstTest {
         serviceBuilder.withArgument(GeneralServerFlag.ALLOW_INSECURE, "adb_shell");
         serviceBuilder.withArgument(GeneralServerFlag.RELAXED_SECURITY);
 
-        // Appium 2.x
         localAppiumServer = AppiumDriverLocalService.buildService(serviceBuilder);
-
         localAppiumServer.start();
         APPIUM_SERVER_URL = localAppiumServer.getUrl().toString();
         System.out.printf("Appium server started on url: '%s'%n", localAppiumServer.getUrl().toString());
